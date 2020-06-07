@@ -21,9 +21,10 @@ export default {
 
 <style scoped>
 .body{
-  width: 80%;
+  width: 90%;
   margin: auto;
   padding: 0.5rem;
+  height: 100vh;
 }
 </style>
 
