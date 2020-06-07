@@ -14,10 +14,10 @@
         
         <div class="result" >
         
-          <section class="" v-if="view">
+          <section class="" v-if="view" >
             <p v-if="source === ''">Blank ...</p>
             <vue-markdown
-              id="markdown-parent"
+             id="markdown-parent"
               class="result-html full-height"
               :watches="['show','html','breaks','linkify','emoji','typographer','toc']"
               :source="source"
@@ -86,6 +86,16 @@ export default {
         textarea.style.height=textarea.scrollHeight+'px';
       }
      
+    },
+    saveTitle:function(){
+      let newTitle=document.getElementById("markdown-parent");
+      if(newTitle){
+        console.log(newTitle.firstChild.innerHTML)
+        this.title=newTitle;
+      }
+    },
+    saveBody:function(){
+      this.body=this.source;
     }
   },
   mounted() {
@@ -93,7 +103,9 @@ export default {
   },
   updated() {
     this.resize()
-    console.log("updated with", this.source);
+    this.saveTitle()
+    this.saveBody()
+    console.log("updated", this.title);
   }
 };
 </script>
