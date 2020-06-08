@@ -62,7 +62,7 @@ export default {
       emoji: true,
       typographer: true,
       toc: true,
-    
+      id:-1,
       title: "",
       body: "",
       listSaveBlog: []
@@ -113,8 +113,19 @@ export default {
     },
     saveBlog: function() {
       if (this.title !== "") {
-        this.listSaveBlog.push({ title: this.title, body: this.body });
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.listSaveBlog));
+        if(this.id == -1){
+          console.log("a",this.id)
+            this.listSaveBlog.push({ title: this.title, body: this.body });
+            this.id=this.listSaveBlog.length -1;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(this.listSaveBlog));
+        }
+        else{
+          console.log(this.id)
+          this.listSaveBlog[this.id]={title:this.title,body:this.body};
+        
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(this.listSaveBlog));
+        }
+        
       } else {
         console.log("please enter title");
       }
